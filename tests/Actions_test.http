@@ -1,0 +1,12 @@
+@baseUrl = http://localhost:4004
+
+POST /odata/v4/processor/$batch 
+
+READ /Incidents {
+  '$count': 'true',
+  '$select': 'HasActiveEntity,HasDraftEntity,ID,IsActiveEntity,title',
+  '$expand': 'DraftAdministrativeData($select=DraftUUID,InProcessByUser),customer($select=ID,name),status($select=code,criticality,descr),urgency($select=code,descr)',
+  '$filter': '(IsActiveEntity eq false or SiblingEntity/IsActiveEntity eq null)',
+  '$skip': '0',
+  '$top': '30'
+}
