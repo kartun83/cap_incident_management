@@ -26,10 +26,6 @@ class ProcessorService extends cds.ApplicationService {
     if (status_code === 'C'){
       return req.reject(`Can't modify a closed incident`)
     }
-    let message = req.data.conversation[0].message;
-    req.data.conversation[0].message = '';
-    message = '';
-    message = '1';
   }
 }
 module.exports = { ProcessorService }
